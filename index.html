@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>إهداء إلى أمي</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: radial-gradient(circle at top, #ffe7ec 0, #ffe7ec 35%, #ffeef5 60%, #fff 100%);
+      color: #3a2c3b;
+    }
+
+    .card-wrapper {
+      padding: 16px;
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .card {
+      position: relative;
+      background: #ffffffcc;
+      backdrop-filter: blur(10px);
+      border-radius: 24px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
+      padding: 28px 24px 24px;
+      overflow: hidden;
+    }
+
+    .card::before,
+    .card::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      opacity: 0.26;
+      pointer-events: none;
+    }
+
+    .card::before {
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle at 30% 30%, #ff8eb3, #ff648f);
+      top: -90px;
+      left: -70px;
+    }
+
+    .card::after {
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle at 70% 30%, #ffcf66, #ff9f4a);
+      top: -120px;
+      right: -100px;
+    }
+
+    .card-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      background: #ffffffee;
+      color: #ff4f7c;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+    }
+
+    .badge-heart {
+      font-size: 14px;
+    }
+
+    .title {
+      font-size: 26px;
+      font-weight: 800;
+      margin-bottom: 4px;
+      color: #3a2c3b;
+    }
+
+    .subtitle {
+      font-size: 15px;
+      color: #70586b;
+      margin-bottom: 20px;
+      line-height: 1.7;
+    }
+
+    .from {
+      font-size: 14px;
+      color: #a07d96;
+      margin-bottom: 18px;
+    }
+
+    .from span {
+      font-weight: 700;
+      color: #ff4f7c;
+    }
+
+    .audio-box {
+      margin-top: 8px;
+      padding: 14px 14px 16px;
+      border-radius: 18px;
+      background: #fff9fb;
+      border: 1px solid #ffd8e5;
+      box-shadow: 0 10px 26px rgba(255, 132, 165, 0.18);
+    }
+
+    .audio-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      gap: 10px;
+    }
+
+    .audio-label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      color: #70435e;
+      font-weight: 600;
+    }
+
+    .audio-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #ff4f7c;
+      box-shadow: 0 0 0 6px rgba(255, 79, 124, 0.18);
+    }
+
+    .audio-status {
+      font-size: 12px;
+      color: #a07d96;
+    }
+
+    .controls-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    .play-btn {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: none;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #ff5d9b, #ff2f6f);
+      color: #fff;
+      box-shadow: 0 10px 22px rgba(255, 79, 124, 0.45);
+      transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, filter 0.08s;
+    }
+
+    .play-btn:active {
+      transform: translateY(1px) scale(0.98);
+      box-shadow: 0 6px 14px rgba(255, 79, 124, 0.35);
+      filter: brightness(0.96);
+    }
+
+    .play-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .time-info {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 11px;
+      color: #a07d96;
+      margin-bottom: 4px;
+    }
+
+    .progress-wrapper {
+      position: relative;
+    }
+
+    .slider {
+      width: 100%;
+      appearance: none;
+      height: 4px;
+      border-radius: 999px;
+      background: #ffd5e2;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .slider::-webkit-slider-thumb {
+      appearance: none;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ff4f7c;
+      box-shadow: 0 0 0 6px rgba(255,79,124,0.25);
+      border: 2px solid #fff;
+      margin-top: -5px;
+    }
+
+    .slider::-moz-range-thumb {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: #ff4f7c;
+      box-shadow: 0 0 0 6px rgba(255,79,124,0.25);
+      border: 2px solid #fff;
+    }
+
+    .slider::-moz-range-track {
+      height: 4px;
+      border-radius: 999px;
+      background: #ffd5e2;
+    }
+
+    .extra-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 8px;
+      font-size: 12px;
+      color: #8a6078;
+    }
+
+    .volume-group,
+    .speed-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex: 1;
+    }
+
+    .volume-slider {
+      flex: 1;
+    }
+
+    select {
+      border-radius: 999px;
+      border: 1px solid #f3bfd4;
+      padding: 4px 10px;
+      font-size: 12px;
+      background: #fff;
+      color: #70435e;
+      cursor: pointer;
+      outline: none;
+    }
+
+    .hint {
+      margin-top: 10px;
+      font-size: 11px;
+      color: #b18da4;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 22px 18px 18px;
+      }
+      .title {
+        font-size: 22px;
+      }
+      .subtitle {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="card-wrapper">
+    <div class="card">
+      <div class="card-content">
+        <div class="badge">
+          <span class="badge-heart">❤</span>
+          <span>كل عام وأنتِ أروع أم</span>
+        </div>
+
+        <h1 class="title">رسالة صوتية لكِ يا أمي</h1>
+        <p class="subtitle">
+          هذه هديتي المتواضعة لكِ في عيد الأم،
+          سجّلت لكِ كلماتي من قلبي، أتمنى أنها توصل لكِ جزء بسيط من حبّي الكبير ❤
+        </p>
+
+        <p class="from">من قلب ابنك / بنتك: <span>اسم الطالب</span></p>
+
+        <div class="audio-box">
+          <div class="audio-header">
+            <div class="audio-label">
+              <span class="audio-dot"></span>
+              <span>تسجيل خاص لك يا أمي</span>
+            </div>
+            <div class="audio-status" id="audioStatus">جاري التحميل...</div>
+          </div>
+
+          <!-- نستخدم نفس اسم ملف الصوت الموجود عندك -->
+          <audio id="momAudio" preload="auto">
+            <source src="AUD-20260316-WA0002.m4a" type="audio/mp4" />
+            متصفحك لا يدعم تشغيل الصوت.
+          </audio>
+
+          <div class="controls-row">
+            <button class="play-btn" id="playPauseBtn" aria-label="تشغيل الرسالة">
+              <svg class="play-icon" viewBox="0 0 24 24">
+                <polygon id="playIcon" points="8,5 19,12 8,19" fill="white"></polygon>
+                <g id="pauseIcon" style="display: none;">
+                  <rect x="7" y="5" width="4" height="14" fill="white"></rect>
+                  <rect x="13" y="5" width="4" height="14" fill="white"></rect>
+                </g>
+              </svg>
+            </button>
+
+            <div style="flex: 1;">
+              <div class="time-info">
+                <span id="currentTime">0:00</span>
+                <span id="totalTime">0:00</span>
+              </div>
+              <div class="progress-wrapper">
+                <input
+                  type="range"
+                  id="seekBar"
+                  class="slider"
+                  min="0"
+                  max="100"
+                  step="0.1"
+                  value="0"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="extra-controls">
+            <div class="volume-group">
+              <span>الصوت</span>
+              <input
+                type="range"
+                id="volumeSlider"
+                class="slider volume-slider"
+                min="0"
+                max="1"
+                step="0.01"
+                value="1"
+              />
+            </div>
+            <div class="speed-group">
+              <span>السرعة</span>
+              <select id="speedSelect">
+                <option value="0.75">0.75x</option>
+                <option value="1" selected>1x</option>
+                <option value="1.25">1.25x</option>
+                <option value="1.5">1.5x</option>
+              </select>
+            </div>
+          </div>
+
+          <p class="hint">
+            إذا لم يعمل الصوت تلقائيًا، اضغطي على زر التشغيل للاستماع لرسالتك 💌
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const audio = document.getElementById("momAudio");
+    const playPauseBtn = document.getElementById("playPauseBtn");
+    const playIcon = document.getElementById("playIcon");
+    const pauseIcon = document.getElementById("pauseIcon");
+    const seekBar = document.getElementById("seekBar");
+    const volumeSlider = document.getElementById("volumeSlider");
+    const speedSelect = document.getElementById("speedSelect");
+    const currentTimeEl = document.getElementById("currentTime");
+    const totalTimeEl = document.getElementById("totalTime");
+    const audioStatus = document.getElementById("audioStatus");
+
+    function formatTime(seconds) {
+      const m = Math.floor(seconds / 60) || 0;
+      const s = Math.floor(seconds % 60) || 0;
+      return m + ":" + (s < 10 ? "0" + s : s);
+    }
+
+    audio.addEventListener("loadedmetadata", () => {
+      totalTimeEl.textContent = formatTime(audio.duration);
+      audioStatus.textContent = "جاهزة للتشغيل";
+    });
+
+    audio.addEventListener("timeupdate", () => {
+      if (!isNaN(audio.duration)) {
+        const progress = (audio.currentTime / audio.duration) * 100;
+        seekBar.value = progress || 0;
+        currentTimeEl.textContent = formatTime(audio.currentTime);
+      }
+    });
+
+    seekBar.addEventListener("input", () => {
+      if (!isNaN(audio.duration)) {
+        const time = (seekBar.value / 100) * audio.duration;
+        audio.currentTime = time;
+      }
+    });
+
+    volumeSlider.addEventListener("input", () => {
+      audio.volume = parseFloat(volumeSlider.value);
+    });
+
+    speedSelect.addEventListener("change", () => {
+      audio.playbackRate = parseFloat(speedSelect.value);
+    });
+
+    function updatePlayButton(isPlaying) {
+      if (isPlaying) {
+        playIcon.style.display = "none";
+        pauseIcon.style.display = "block";
+        audioStatus.textContent = "جاري التشغيل...";
+      } else {
+        playIcon.style.display = "block";
+        pauseIcon.style.display = "none";
+        audioStatus.textContent = "متوقف مؤقتًا";
+      }
+    }
+
+    playPauseBtn.addEventListener("click", () => {
+      if (audio.paused) {
+        audio.play().catch(() => {});
+      } else {
+        audio.pause();
+      }
+    });
+
+    audio.addEventListener("play", () => updatePlayButton(true));
+    audio.addEventListener("pause", () => updatePlayButton(false));
+    audio.addEventListener("ended", () => {
+      updatePlayButton(false);
+      audio.currentTime = 0;
+      seekBar.value = 0;
+      currentTimeEl.textContent = "0:00";
+      audioStatus.textContent = "انتهى التسجيل";
+    });
+
+    window.addEventListener("load", () => {
+      audio.volume = 1;
+      audio.play().then(() => {
+        updatePlayButton(true);
+      }).catch(() => {
+        audioStatus.textContent = "اضغطي على زر التشغيل للاستماع ❤";
+      });
+    });
+  </script>
+</body>
+</html>
