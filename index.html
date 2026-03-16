@@ -6,6 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
+    :root {
+      --primary: #0421bf;
+      --secondary: #c31d8d;
+      --text: #121826;
+      --muted: #5b6475;
+      --card-bg: rgba(255, 255, 255, 0.92);
+      --border: rgba(4, 33, 191, 0.14);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -18,8 +27,8 @@
       align-items: center;
       justify-content: center;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: radial-gradient(circle at top, #ffe7ec 0, #ffe7ec 35%, #ffeef5 60%, #fff 100%);
-      color: #3a2c3b;
+      background: #ffffff;
+      color: var(--text);
     }
 
     .card-wrapper {
@@ -30,12 +39,13 @@
 
     .card {
       position: relative;
-      background: #ffffffcc;
+      background: var(--card-bg);
       backdrop-filter: blur(10px);
       border-radius: 24px;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08);
       padding: 28px 24px 24px;
       overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.04);
     }
 
     .card::before,
@@ -50,7 +60,7 @@
     .card::before {
       width: 220px;
       height: 220px;
-      background: radial-gradient(circle at 30% 30%, #ff8eb3, #ff648f);
+      background: radial-gradient(circle at 30% 30%, rgba(195, 29, 141, 0.42), rgba(195, 29, 141, 0.18));
       top: -90px;
       left: -70px;
     }
@@ -58,7 +68,7 @@
     .card::after {
       width: 260px;
       height: 260px;
-      background: radial-gradient(circle at 70% 30%, #ffcf66, #ff9f4a);
+      background: radial-gradient(circle at 70% 30%, rgba(4, 33, 191, 0.32), rgba(4, 33, 191, 0.14));
       top: -120px;
       right: -100px;
     }
@@ -74,12 +84,13 @@
       gap: 6px;
       padding: 4px 12px;
       border-radius: 999px;
-      background: #ffffffee;
-      color: #ff4f7c;
+      background: rgba(4, 33, 191, 0.06);
+      color: var(--primary);
       font-size: 12px;
       font-weight: 600;
       margin-bottom: 12px;
       box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+      border: 1px solid var(--border);
     }
 
     .badge-heart {
@@ -90,34 +101,34 @@
       font-size: 26px;
       font-weight: 800;
       margin-bottom: 4px;
-      color: #3a2c3b;
+      color: var(--text);
     }
 
     .subtitle {
       font-size: 15px;
-      color: #70586b;
+      color: var(--muted);
       margin-bottom: 20px;
       line-height: 1.7;
     }
 
     .from {
       font-size: 14px;
-      color: #a07d96;
+      color: rgba(18, 24, 38, 0.72);
       margin-bottom: 18px;
     }
 
     .from span {
       font-weight: 700;
-      color: #ff4f7c;
+      color: var(--secondary);
     }
 
     .audio-box {
       margin-top: 8px;
       padding: 14px 14px 16px;
       border-radius: 18px;
-      background: #fff9fb;
-      border: 1px solid #ffd8e5;
-      box-shadow: 0 10px 26px rgba(255, 132, 165, 0.18);
+      background: rgba(4, 33, 191, 0.04);
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 26px rgba(4, 33, 191, 0.10);
     }
 
     .audio-header {
@@ -133,7 +144,7 @@
       align-items: center;
       gap: 8px;
       font-size: 14px;
-      color: #70435e;
+      color: rgba(18, 24, 38, 0.82);
       font-weight: 600;
     }
 
@@ -141,13 +152,13 @@
       width: 8px;
       height: 8px;
       border-radius: 999px;
-      background: #ff4f7c;
-      box-shadow: 0 0 0 6px rgba(255, 79, 124, 0.18);
+      background: var(--secondary);
+      box-shadow: 0 0 0 6px rgba(195, 29, 141, 0.16);
     }
 
     .audio-status {
       font-size: 12px;
-      color: #a07d96;
+      color: rgba(18, 24, 38, 0.56);
     }
 
     .controls-row {
@@ -166,15 +177,15 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #ff5d9b, #ff2f6f);
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       color: #fff;
-      box-shadow: 0 10px 22px rgba(255, 79, 124, 0.45);
+      box-shadow: 0 10px 22px rgba(4, 33, 191, 0.24);
       transition: transform 0.08s ease-out, box-shadow 0.08s ease-out, filter 0.08s;
     }
 
     .play-btn:active {
       transform: translateY(1px) scale(0.98);
-      box-shadow: 0 6px 14px rgba(255, 79, 124, 0.35);
+      box-shadow: 0 6px 14px rgba(4, 33, 191, 0.18);
       filter: brightness(0.96);
     }
 
@@ -188,7 +199,7 @@
       align-items: center;
       justify-content: space-between;
       font-size: 11px;
-      color: #a07d96;
+      color: rgba(18, 24, 38, 0.56);
       margin-bottom: 4px;
     }
 
@@ -201,7 +212,7 @@
       appearance: none;
       height: 4px;
       border-radius: 999px;
-      background: #ffd5e2;
+      background: rgba(4, 33, 191, 0.18);
       outline: none;
       cursor: pointer;
     }
@@ -211,8 +222,8 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background: #ff4f7c;
-      box-shadow: 0 0 0 6px rgba(255,79,124,0.25);
+      background: var(--secondary);
+      box-shadow: 0 0 0 6px rgba(195, 29, 141, 0.18);
       border: 2px solid #fff;
       margin-top: -5px;
     }
@@ -221,15 +232,15 @@
       width: 14px;
       height: 14px;
       border-radius: 50%;
-      background: #ff4f7c;
-      box-shadow: 0 0 0 6px rgba(255,79,124,0.25);
+      background: var(--secondary);
+      box-shadow: 0 0 0 6px rgba(195, 29, 141, 0.18);
       border: 2px solid #fff;
     }
 
     .slider::-moz-range-track {
       height: 4px;
       border-radius: 999px;
-      background: #ffd5e2;
+      background: rgba(4, 33, 191, 0.18);
     }
 
     .extra-controls {
@@ -239,7 +250,7 @@
       gap: 12px;
       margin-top: 8px;
       font-size: 12px;
-      color: #8a6078;
+      color: rgba(18, 24, 38, 0.68);
     }
 
     .volume-group,
@@ -256,11 +267,11 @@
 
     select {
       border-radius: 999px;
-      border: 1px solid #f3bfd4;
+      border: 1px solid var(--border);
       padding: 4px 10px;
       font-size: 12px;
       background: #fff;
-      color: #70435e;
+      color: rgba(18, 24, 38, 0.80);
       cursor: pointer;
       outline: none;
     }
@@ -268,8 +279,25 @@
     .hint {
       margin-top: 10px;
       font-size: 11px;
-      color: #b18da4;
+      color: rgba(18, 24, 38, 0.52);
       line-height: 1.5;
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+    }
+
+    .logo {
+      width: 86px;
+      height: auto;
+      border-radius: 18px;
+      background: #fff;
+      padding: 6px 10px;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.06);
     }
 
     @media (max-width: 480px) {
@@ -282,6 +310,11 @@
       .subtitle {
         font-size: 14px;
       }
+
+      .logo {
+        width: 76px;
+        border-radius: 16px;
+      }
     }
   </style>
 </head>
@@ -289,15 +322,21 @@
   <div class="card-wrapper">
     <div class="card">
       <div class="card-content">
+        <div class="logo-row">
+          <img class="logo" src="logo.png" alt="SPS" />
+        </div>
+
         <div class="badge">
-          <span class="badge-heart">❤</span>
-          <span>كل عام وأنتِ أروع أم</span>
+          <span class="badge-heart" aria-hidden="true">💙</span>
+          <span>من SPS</span>
+          <span class="badge-heart" aria-hidden="true">💗</span>
         </div>
 
         <h1 class="title">رسالة صوتية لكِ يا أمي</h1>
         <p class="subtitle">
-          هذه هديتي المتواضعة لكِ في عيد الأم،
-          سجّلت لكِ كلماتي من قلبي، أتمنى أنها توصل لكِ جزء بسيط من حبّي الكبير ❤
+          كبُرت اليد الصغيرة في صفي،
+          لأنّها تستند دائماً على يدكِ القوية ❤️
+          كل عام وأنتِ أم عظيمة وقوية
         </p>
 
         <p class="from">من قلب ابنك / بنتك: <span>اسم الطالب</span></p>
